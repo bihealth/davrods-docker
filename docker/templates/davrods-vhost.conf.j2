@@ -1,0 +1,45 @@
+<VirtualHost *:80>
+    ServerName localhost
+
+    {% if DAVRODS_ENABLE_TICKETS|default != "0" %}
+    SetEnvIfExpr "req_novary('Authorization') =~ /^Basic +(.*)/"          DAVRODS_BASIC_CREDS64=$1
+    SetEnvIfExpr "unbase64(reqenv('DAVRODS_BASIC_CREDS64')) =~ /(.*:.*)/" DAVRODS_BASIC_CREDS=$1
+    SetEnvIfExpr "reqenv('DAVRODS_BASIC_CREDS') =~ /^anonymous:(.*)/"        DAVRODS_BASIC_TICKET=$1
+    SetEnvIfExpr "reqenv('DAVRODS_BASIC_TICKET') =~ /^(.*)$/"             DAVRODS_TICKET=$1
+
+    <If "-n reqenv('DAVRODS_BASIC_TICKET')">
+        AuthType None
+        Require  all granted
+        DavrodsAuthScheme Native
+        DavrodsAnonymousMode On
+        DavrodsAnonymousLogin "anonymous" ""
+        DavrodsHtmlEmitTickets Off
+    </If>
+    {% endif %}
+
+    <Location />
+        {% if DAVRODS_ENABLE_TICKETS != "0" %}
+        DavrodsTickets ReadOnly
+        {% endif %}
+
+        DirectoryIndex        enabled
+
+        AuthType              Basic
+        Require               valid-user
+        AuthName              "{{ DAVRODS_AUTH_NAME }}"
+        AuthBasicProvider     irods
+
+        Dav                   davrods-locallock
+
+        DavRodsEnvFile        /etc/httpd/irods/irods_environment.json
+        DavRodsServer         {{ IRODS_HOST_NAME }} {{ IRODS_ZONE_PORT }}
+        DavRodsZone           {{ IRODS_ZONE_NAME }}
+        DavRodsAuthScheme     {{ IRODS_AUTHENTICATION_SCHEME }}
+        DavRodsExposedRoot    /
+
+        DavRodsHtmlHead       /etc/httpd/irods/head.html
+        DavRodsHtmlHeader     /etc/httpd/irods/header.html
+        DavRodsHtmlFooter     /etc/httpd/irods/footer.html
+    </Location>
+
+</VirtualHost>
