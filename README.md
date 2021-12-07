@@ -35,3 +35,7 @@ If you specify anything else then the startup script will `exec` this command (e
 | DAVRODS_PKG_VERSION                 | 4.2.8_1.5.0                       |
 | DAVRODS_ENABLE_TICKETS              | 0                                 |
 | DAVRODS_AUTH_NAME                   | "Please log in."                  |
+
+## Custom Theme
+
+To introduce your own theme, use the `/etc/httpd/irods/theme/` volume and copy or overwrite the Davrods HTML template files.

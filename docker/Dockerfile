@@ -56,6 +56,9 @@ RUN sed -ri \
         -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
         "/etc/httpd/conf/httpd.conf"
 
+# Set up theme dir and volume
+VOLUME "/etc/httpd/irods/theme"
+
 EXPOSE 80
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

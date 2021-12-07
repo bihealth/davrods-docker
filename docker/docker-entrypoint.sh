@@ -13,6 +13,13 @@ if [[ "$1" == "davrods-start" ]]; then
     chmod 0644 /etc/httpd/conf.d/davrods-vhost.conf
     cat /etc/httpd/conf.d/davrods-vhost.conf # DEBUG
 
+    echo "Copy default theme templates if not yet in volume.."
+    rsync -av --ignore-existing \
+        /etc/httpd/irods/head.html \
+        /etc/httpd/irods/header.html \
+        /etc/httpd/irods/footer.html \
+        /etc/httpd/irods/theme/
+
     echo "Start Apache daemon.."
     exec /usr/sbin/apachectl -DFOREGROUND
 
