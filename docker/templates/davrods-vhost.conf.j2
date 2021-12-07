@@ -1,7 +1,7 @@
 <VirtualHost *:80>
     ServerName localhost
 
-    {% if DAVRODS_ENABLE_TICKETS|default != "0" %}
+    {% if DAVRODS_ENABLE_TICKETS != "0" %}
     SetEnvIfExpr "req_novary('Authorization') =~ /^Basic +(.*)/"          DAVRODS_BASIC_CREDS64=$1
     SetEnvIfExpr "unbase64(reqenv('DAVRODS_BASIC_CREDS64')) =~ /(.*:.*)/" DAVRODS_BASIC_CREDS=$1
     SetEnvIfExpr "reqenv('DAVRODS_BASIC_CREDS') =~ /^anonymous:(.*)/"        DAVRODS_BASIC_TICKET=$1
