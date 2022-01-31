@@ -23,16 +23,16 @@ If you specify anything else then the startup script will `exec` this command (e
 
 | Variable name                       | Default Value                     |
 |-------------------------------------|-----------------------------------|
-| IRODS_PKG_VERSION                   | 4.2.8-1                           |
+| IRODS_PKG_VERSION                   | 4.2.11-1                          |
 | IRODS_HOST_NAME                     | localhost                         |
 | IRODS_ZONE_PORT                     | 1247                              |
 | IRODS_ZONE_NAME                     | sodarZone                         |
-| IRODS_SSL_VERIFY_SERVER             | none                              |
+| IRODS_SSL_VERIFY_SERVER             | none                              |
 | IRODS_SSL_CA_CERT_PATH              | /etc/httpd/irods/irods_server.crt |
 | IRODS_AUTHENTICATION_SCHEME         | native                            |
 | IRODS_CLIENT_SERVER_NEGOTIATION     | off                               |
 | IRODS_CLIENT_SERVER_POLICY          | CS_NEG_REFUSE                     |
-| DAVRODS_PKG_VERSION                 | 4.2.8_1.5.0                       |
+| DAVRODS_PKG_VERSION                 | 4.2.11_1.5.0                      |
 | DAVRODS_ENABLE_TICKETS              | 0                                 |
 | DAVRODS_AUTH_NAME                   | "Please log in."                  |
 

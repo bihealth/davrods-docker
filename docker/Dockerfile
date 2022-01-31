@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="mikko.nieminen@bih-charite.de"
 LABEL org.opencontainers.image.source https://github.com/bihealth/davrods-docker
 
 # Environment variables for container runtime
-ENV IRODS_PKG_VERSION=4.2.8-1 \
+ENV IRODS_PKG_VERSION=4.2.11-1 \
     IRODS_HOST_NAME=localhost \
     IRODS_ZONE_PORT=1247 \
     IRODS_ZONE_NAME=sodarZone \
@@ -13,7 +13,7 @@ ENV IRODS_PKG_VERSION=4.2.8-1 \
     IRODS_AUTHENTICATION_SCHEME=native \
     IRODS_CLIENT_SERVER_NEGOTIATION=off \
     IRODS_CLIENT_SERVER_POLICY=CS_NEG_REFUSE \
-    DAVRODS_PKG_VERSION=4.2.8_1.5.0 \
+    DAVRODS_PKG_VERSION=4.2.11_1.5.0 \
     DAVRODS_ENABLE_TICKETS=0 \
     DAVRODS_AUTH_NAME="Please log in."
 
