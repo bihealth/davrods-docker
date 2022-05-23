@@ -11,7 +11,6 @@ if [[ "$1" == "davrods-start" ]]; then
     echo "Set up Davrods vhost config.."
     j2 -o /etc/httpd/conf.d/davrods-vhost.conf --undefined /davrods-vhost.conf.j2
     chmod 0644 /etc/httpd/conf.d/davrods-vhost.conf
-    cat /etc/httpd/conf.d/davrods-vhost.conf # DEBUG
 
     echo "Copy default theme templates if not yet in volume.."
     rsync -av --ignore-existing \
