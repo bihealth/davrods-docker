@@ -1,28 +1,38 @@
 #!/bin/bash
 
 if [[ "$1" == "davrods-start" ]]; then
-    # Remote possible incorrectly shut down server on restart
-    rm -rf /run/httpd/* /tmp/httpd*
 
     echo "Set up iRODS environment file.."
-    j2 -o /etc/httpd/irods/irods_environment.json --undefined /irods_environment.json.j2
-    chmod 0644 /etc/httpd/irods/irods_environment.json
+    j2 -o /etc/apache2/irods/irods_environment.json --undefined /irods_environment.json.j2
+    chmod 0644 /etc/apache2/irods/irods_environment.json
 
     echo "Set up Davrods vhost config.."
-    j2 -o /etc/httpd/conf.d/davrods-vhost.conf --undefined /davrods-vhost.conf.j2
-    chmod 0644 /etc/httpd/conf.d/davrods-vhost.conf
+    j2 -o /etc/apache2/sites-available/davrods-vhost.conf --undefined /davrods-vhost.conf.j2
+    chmod 0644 /etc/apache2/sites-available/davrods-vhost.conf
+
+    # Make log directory
+    mkdir -p /var/log/apache2
+    touch /var/log/apache2/apache.access.log
+    touch /var/log/apache2/apache.error.log
+    touch /var/log/apache2/davrods.access.log
+    touch /var/log/apache2/davrods.error.log
+
+    # Remove default webpage and enable davrods
+    rm -f /etc/apache2/sites-enabled/*
+    ln -s /etc/apache2/sites-available/davrods-vhost.conf /etc/apache2/sites-enabled/davrods-vhost.conf
 
     echo "Copy default theme templates if not yet in volume.."
     rsync -av --ignore-existing \
-        /etc/httpd/irods/head.html \
-        /etc/httpd/irods/header.html \
-        /etc/httpd/irods/footer.html \
-        /etc/httpd/irods/theme/
+        /etc/apache2/irods/head.html \
+        /etc/apache2/irods/header.html \
+        /etc/apache2/irods/footer.html \
+        /etc/apache2/irods/theme/
 
     echo "Start Apache daemon.."
-    exec /usr/sbin/apachectl -DFOREGROUND
+    /etc/init.d/apache2 start
 
     # this script must end with a persistent foreground process
-    tail -F /var/log/httpd/access.log /var/log/httpd/error.log |awk '/^==> / {a=substr($0, 5, length-8); next} {print a":"$0}'
+    tail -Fq -n0 /var/log/apache2/access.log /var/log/apache2/error.log \
+        /var/log/apache2/davrods.access.log /var/log/apache2/davrods.error.log
 
 fi
