@@ -11,6 +11,7 @@
 - Add `DAVRODS_AUTH_SCHEME` env var (#3)
 - Add `DAVRODS_LOG_LEVEL` env var (#3)
 - Remove uses of `IRODS_AUTHENTICATION_SCHEME` env var (#3)
+- Update Davrods dependency to forked version (#9)
 
 ## 4.2.11_1.5.0-1 (2024-10-15)
 

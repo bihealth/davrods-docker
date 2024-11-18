@@ -19,20 +19,14 @@ RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add - 
     irods-runtime=${IRODS_PKG_VERSION} \
     irods-dev=${IRODS_PKG_VERSION}
 
-# Clone the Utrecht University Davrods repository
+# Clone our forked Davrods repository with iRODS 4.3 and SODAR fixes
 WORKDIR /tmp
-RUN git clone https://github.com/UtrechtUniversity/davrods.git
+RUN git clone https://github.com/mikkonie/davrods.git
+WORKDIR /tmp/davrods
+RUN git checkout 52d54a56a860ad3c34370688044c30481d8ade9b
 RUN mkdir -p /tmp/davrods/build
 
-# Update iRODS version in CMakeLists file
-RUN sed -i 's/${DAVRODS_IRODS_VERSION}/${IRODS_PKG_VERSION}/g' /tmp/davrods/CMakeLists.txt
-# Update TTL to get around password_min_time error
-RUN sed -i 's/rods_auth_ttl = 1/rods_auth_ttl = 336/g' /tmp/davrods/src/config.c
-# Update password length limit to enable token auth
-RUN sed -i 's/strlen(password) > 63/strlen(password) > 128/g' /tmp/davrods/src/auth.c
-# Workaround proposed by iRODS team in https://github.com/UtrechtUniversity/davrods/issues/35
-RUN sed -i 's/module AP_MODULE_DECLARE_DATA davrods_module;/extern module AP_MODULE_DECLARE_DATA davrods_module;/g' /tmp/davrods/src/mod_davrods.h
-# Build Davrods for iRODS version
+# Build Davrods
 WORKDIR /tmp/davrods/build
 RUN cmake ..
 RUN make
