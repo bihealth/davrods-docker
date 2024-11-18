@@ -1,6 +1,6 @@
-# Changelog
+# Davrods-Docker Changelog
 
-## Unreleased
+## v4.3.3_1.5.1-1 (2024-11-18)
 
 - Stop building `latest` version of image (#5)
 - Add build version to `build.sh` (#5)
@@ -13,6 +13,6 @@
 - Remove uses of `IRODS_AUTHENTICATION_SCHEME` env var (#3)
 - Update Davrods dependency to forked version (#9)
 
-## 4.2.11_1.5.0-1 (2024-10-15)
+## v4.2.11_1.5.0-1 (2024-10-15)
 
 - Tag release for legacy Davrods v4.2.11 image
