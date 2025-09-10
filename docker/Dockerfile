@@ -6,8 +6,7 @@
 FROM ubuntu:22.04 AS build
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG IRODS_PKG_VERSION="4.3.3"
-ARG DAVRODS_IRODS_VERSION="4.2.12"
+ARG IRODS_PKG_VERSION="4.3.4"
 
 RUN apt-get update
 RUN apt-get install -y apache2-dev git wget cmake
@@ -23,7 +22,7 @@ RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add - 
 WORKDIR /tmp
 RUN git clone https://github.com/mikkonie/davrods.git
 WORKDIR /tmp/davrods
-RUN git checkout 52d54a56a860ad3c34370688044c30481d8ade9b
+RUN git checkout a0a77f12520e3f382274bb61db359d49a8642cc7
 RUN mkdir -p /tmp/davrods/build
 
 # Build Davrods
@@ -39,9 +38,8 @@ LABEL org.opencontainers.image.authors="mikko.nieminen@bih-charite.de"
 LABEL org.opencontainers.image.source="https://github.com/bihealth/davrods-docker"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG IRODS_PKG_VERSION="4.3.3"
-ARG DAVRODS_VERSION="1.5.1"
-ARG DAVRODS_IRODS_VERSION="4.2.12"
+ARG IRODS_PKG_VERSION="4.3.4"
+ARG DAVRODS_VERSION="1.5.2"
 
 # Environment variables for container runtime
 # TODO: Update as needed
@@ -77,7 +75,7 @@ RUN apt-get install -y python3-pip python3-jinja2 python3-yaml
 RUN pip install j2cli
 
 # Install Davrods
-RUN wget https://github.com/UtrechtUniversity/davrods/releases/download/${DAVRODS_IRODS_VERSION}_${DAVRODS_VERSION}/davrods-${DAVRODS_IRODS_VERSION}-${DAVRODS_VERSION}.deb -O /tmp/davrods.deb \
+RUN wget https://github.com/UtrechtUniversity/davrods/releases/download/${IRODS_PKG_VERSION}_${DAVRODS_VERSION}/davrods-${IRODS_PKG_VERSION}-${DAVRODS_VERSION}.deb -O /tmp/davrods.deb \
     && dpkg -i --force-depends /tmp/davrods.deb
 
 # Backup original vhost conf
