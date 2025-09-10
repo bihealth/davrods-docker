@@ -1,5 +1,10 @@
 # Davrods-Docker Changelog
 
+## Unreleased
+
+- Upgrade to iRODS v4.3.4 (#11)
+- Upgrade to Davrods v1.5.2 (#11)
+
 ## v4.3.3_1.5.1-1 (2024-11-18)
 
 - Stop building `latest` version of image (#5)
