@@ -4,6 +4,7 @@
 
 - Upgrade to iRODS v4.3.4 (#11)
 - Upgrade to Davrods v1.5.2 (#11)
+- Remove `DAVRODS_IRODS_VERSION` env var (#12)
 
 ## v4.3.3_1.5.1-1 (2024-11-18)
 

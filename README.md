@@ -34,15 +34,13 @@ If you specify anything else then the startup script will `exec` this command (e
 | IRODS_CLIENT_SERVER_NEGOTIATION     | off                               |
 | IRODS_CLIENT_SERVER_POLICY          | CS_NEG_REFUSE                     |
 | DAVRODS_VERSION                     | 1.5.1                             |
-| DAVRODS_IRODS_VERSION (1)           | 4.2.12                            |
 | DAVRODS_ENABLE_TICKETS              | 0                                 |
 | DAVRODS_AUTH_NAME                   | "Please log in."                  |
-| DAVRODS_AUTH_SCHEME (2)             | native                            |
-| DAVRODS_LOG_LEVEL (3)               | info                              |
+| DAVRODS_AUTH_SCHEME (1)             | native                            |
+| DAVRODS_LOG_LEVEL (2)               | info                              |
 
-1. This should be the iRODS version set in the most recent build of Davrods we're modifying.
-2. Until Davrods switches to using the new iRODS client plugins, this may require a different value than your iCommands auth scheme.
-3. Set to `debug` to see iRODS client error messages in your logs.
+1. Until Davrods switches to using the new iRODS client plugins, this may require a different value than your iCommands auth scheme.
+2. Set to `debug` to see iRODS client error messages in your logs.
 
 ## Custom Theme
 
