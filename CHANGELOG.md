@@ -1,5 +1,9 @@
 # Davrods-Docker Changelog
 
+## v4.3.4_1.5.2-2 (2026-05-13)
+
+- Rebuild to fix Apache vulnerabilities (#14)
+
 ## v4.3.4_1.5.2-1 (2025-09-10)
 
 - Upgrade to iRODS v4.3.4 (#11)
