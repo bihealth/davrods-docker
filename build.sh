@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export REPO=ghcr.io/bihealth/davrods-docker
-export CONTAINER_VERSION=${CONTAINER_VERSION-4.3.4_1.5.2}
-export IRODS_PKG_VERSION=${IRODS_PKG_VERSION-4.3.4}
+export CONTAINER_VERSION=${CONTAINER_VERSION-4.3.5_1.5.2}
+export IRODS_PKG_VERSION=${IRODS_PKG_VERSION-4.3.5}
 export BUILD_VERSION=${BUILD_VERSION-1}
 
 docker build \

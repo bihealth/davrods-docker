@@ -8,7 +8,7 @@ This image allows for configuring Davrods and iRODS via environment variables. O
 Note that in our use case, secure connections are handled by Traefik in the
 docker-compose environment. Thus we configure the host internally as HTTP.
 
-This version supports iRODS v4.3.4 and may not be compatible with older or newer server versions.
+This version supports iRODS v4.3.5 and may not be compatible with older or newer server versions.
 
 ## Building
 
@@ -25,7 +25,7 @@ If you specify anything else then the startup script will `exec` this command (e
 
 | Variable name                       | Default Value                     |
 |-------------------------------------|-----------------------------------|
-| IRODS_PKG_VERSION                   | 4.3.4                             |
+| IRODS_PKG_VERSION                   | 4.3.5                             |
 | IRODS_HOST_NAME                     | localhost                         |
 | IRODS_ZONE_PORT                     | 1247                              |
 | IRODS_ZONE_NAME                     | sodarZone                         |
