@@ -10,6 +10,8 @@ docker-compose environment. Thus we configure the host internally as HTTP.
 
 This version supports iRODS v4.3.5 and may not be compatible with older or newer server versions.
 
+**NOTE:** We currently use a v4.3.4 build of Davrods as a v4.3.5 build is not available. To our knowledge this build works with both iRODS versions. Please open a bug report if some issues arise.
+
 ## Building
 
 Use the provided `build.sh` script to build the image.

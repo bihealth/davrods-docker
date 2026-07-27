@@ -34,7 +34,7 @@ RUN make
 
 FROM ubuntu:22.04
 
-LABEL org.opencontainers.image.authors="mikko.nieminen@bih-charite.de"
+LABEL org.opencontainers.image.authors="Mikko Nieminen <mikko.nieminen@bih-charite.de>, Federico Marotta <federico.marotta@bih-charite.de>"
 LABEL org.opencontainers.image.source="https://github.com/bihealth/davrods-docker"
 
 ARG DEBIAN_FRONTEND=noninteractive
